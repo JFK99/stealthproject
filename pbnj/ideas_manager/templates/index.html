@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form id="ideaForm" class="form-horizontal">
+  <fieldset>
+	<div class="input-append">
+		{{ idea_form }}
+       		<button type="button" id='push_idea' class="btn">Submit</button>        
+              </div>
+</fieldset>
+          </form>
+
+<div class="alert alert-success alert_save">
+<b>Holy Guacamole!</b> Idea is in the box! <br/><a href='/'>Add More?</a> 
+</div>
+{% endblock %}
