@@ -1,4 +1,4 @@
-import simplejson as json
+
 from django.http import HttpResponse
 from models import idea
 from django.shortcuts import render_to_response  
