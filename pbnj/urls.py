@@ -9,6 +9,7 @@ urlpatterns = patterns('pbnj.ideas_manager.views',
     url(r'^$', 'index', name='index'),
     url(r'^push', 'push', name='push'), 
 	url(r'^pull', 'pull', name='pull'), 
+	url(r'^vault', 'vault', name='vault'), 
 	url(r'^login', 'login', name='login'), 
     # url(r'^pbnj/', include('pbnj.foo.urls')),
 

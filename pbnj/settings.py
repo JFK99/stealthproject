@@ -66,6 +66,8 @@ STATIC_ROOT = ''
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+AUTH_PROFILE_MODULE = 'ideas_manager.UserProfile'
+
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -127,6 +129,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'pbnj.ideas_manager',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging

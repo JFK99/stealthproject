@@ -1,16 +1,16 @@
-
 from django.http import HttpResponse
-from models import idea
+from models import idea, UserProfile
 from django.shortcuts import render_to_response  
-from forms import ideaForm
+from forms import ideaForm, UserForm
 from django.core.context_processors import csrf
 from django.template import Context
 from django.core import serializers
 from helpers import dumps
 from datetime import datetime
+from django.contrib.auth import models
 
 def home(request):
-    return HttpResponse("Hello World")
+    return HttpResponse("")
 
 
 def index(request): #Define our function, accept a request  
@@ -18,7 +18,6 @@ def index(request): #Define our function, accept a request
     #items = idea.objects.all() #ORM queries the database for all of the to-do entries.  
     
     c = Context({ 'idea_form': ideaForm()})
-    
     return render_to_response('index.html', c) #Responds with passing the 
 
 
@@ -39,5 +38,12 @@ def login(request):
 	return HttpResponse("login")	
 
 def pull(request):
-	items = idea.objects.all() #ORM queries the database for all of the to-do entries.  
-	return HttpResponse("pull")	
+	items = idea.objects.all() #Query to get idea
+	return HttpResponse("pull")
+
+def vault(request):
+    group = models.Group.objects.get(name='PBNJ')
+    users = UserProfile.objects.filter(user__in=group.user_set.all())
+    
+    c = Context({ 'user_form': UserForm(), 'users': users})
+    return render_to_response("vault.html", c)

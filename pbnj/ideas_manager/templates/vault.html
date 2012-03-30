@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form id="userForm" class="form-horizontal">
+	<fieldset>
+		<div id='user'>
+			{% for user in users%}
+
+				<span data-order='{{ user.order }}' {% if forloop.first %}class='active' {% endif %}>{{ user.user.username }}</span>
+
+			{% endfor %}
+
+		</div>
+		<div class="">
+			
+			{{ user_form }}
+	    </div>
+	</fieldset>
+</form>
+
+
+
+{% endblock %}
