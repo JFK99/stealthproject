@@ -37,9 +37,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
+            <div class='barre' style='margin-left: 20px;'></div>
           <a class="brand" href="/">PBNJ</a>
+            <div class='barre' style='margin-top: 11px; margin-left: -17px;'></div>
           <div class="nav-collapse">
             {% block nav-vault %}<p class="navbar-text pull-right ">
+
               <a href="{% url vault %}">The Vault</a>
             </p>
             {% endblock %}
@@ -48,7 +51,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container main">
     {% block content %}
 
     {% endblock %}
