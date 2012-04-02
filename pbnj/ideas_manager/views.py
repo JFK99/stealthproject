@@ -20,7 +20,7 @@ def index(request): #Define our function, accept a request
     c = Context({ 'idea_form': ideaForm()})
     return render_to_response('index.html', c) #Responds with passing the 
 
-
+@csrf_exempt
 def push(request):
     entry =  request.POST
     now = datetime.now()
