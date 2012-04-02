@@ -39,9 +39,10 @@
           </a>
           <a class="brand" href="/">PBNJ</a>
           <div class="nav-collapse">
-            <p class="navbar-text pull-right">
+            {% block nav-vault %}<p class="navbar-text pull-right ">
               <a href="{% url vault %}">The Vault</a>
             </p>
+            {% endblock %}
           </div><!--/.nav-collapse -->
         </div>
       </div>
