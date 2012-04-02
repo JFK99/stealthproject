@@ -8,6 +8,8 @@ from django.core import serializers
 from helpers import dumps
 from datetime import datetime
 from django.contrib.auth import models
+from django.views.decorators.csrf import csrf_exempt
+
 
 def home(request):
     return HttpResponse("")
