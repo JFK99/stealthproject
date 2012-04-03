@@ -36,7 +36,7 @@ def push(request):
     return HttpResponse(dumps(response), mimetype="application/json")    
     
 	    
-
+@csrf_exempt
 def login(request):
     username=request.POST['login']
     password = request.POST['pin']
