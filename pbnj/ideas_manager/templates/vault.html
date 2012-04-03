@@ -6,11 +6,13 @@
 {% block content %}
 
 <form id="userForm" class="form-horizontal">
+
 	<fieldset>
+		<div id='idea_placeholder'></div>
 		<div id='user'>
 			{% for user in users%}
 
-				<span data-order='{{ user.order }}' {% if forloop.first %}class='active' {% endif %}>{{ user.user.username }}</span>
+				<span data-user={{ user.user.username }} data-order='{{ user.order }}' {% if forloop.first %}class='active' {% endif %}>{{ user.user.username }}</span>
 
 			{% endfor %}
 
@@ -19,6 +21,7 @@
 			
 			{{ user_form }}
 	    </div>
+	    <br/><span class="label label-important error_pwd"><b>Pin Incorrect!</span>
 	</fieldset>
 </form>
 

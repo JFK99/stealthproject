@@ -14,6 +14,6 @@ class ideaForm(forms.Form):
 class UserForm(forms.Form):
     password = forms.CharField(
     	label='',
-    	widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'passcode', 'class' : 'input-small password-field '})
+    	widget=forms.PasswordInput(render_value=False, attrs={'placeholder': 'passcode', 'class' : 'input-small password-field ', 'maxlength' : '4'})
     )
 

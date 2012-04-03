@@ -9,6 +9,7 @@ from helpers import dumps
 from datetime import datetime
 from django.contrib.auth import models
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
 
 
 def home(request):
@@ -37,7 +38,22 @@ def push(request):
 	    
 
 def login(request):
-	return HttpResponse("login")	
+    username=request.POST['login']
+    password = request.POST['pin']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+    	if user.is_active:
+    		response = {
+        		"success": True,
+     	   		"code": 0,
+    		}
+    else:
+    	response = {
+        	"success": True,
+        	"code": 1,
+    	}
+	
+    return HttpResponse(dumps(response), mimetype="application/json")    
 
 def pull(request):
 	items = idea.objects.all() #Query to get idea
