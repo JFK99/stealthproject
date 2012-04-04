@@ -56,14 +56,23 @@ def login(request):
     return HttpResponse(dumps(response), mimetype="application/json")    
 
 def pull(request):
-	item = idea.objects.filter(viewed=False).order_by('?')[0]
-	item.viewed = True
-	item.save()
-	response = {
-		"success": True,
-		"code": 0,
-		"idea": item.description
-	}
+	try:
+		item = idea.objects.filter(viewed=False).order_by('?')[0]
+		item.viewed = True
+		item.save()
+		response = {
+			"success": True,
+			"code": 0,
+			"idea": item.description
+		}
+	except IndexError:
+		response = {
+			"success": True,
+			"code": 0,
+			"idea": "Oops, I'm out of idea, please refill me"
+		}
+
+	
 	return HttpResponse(dumps(response), mimetype="application/json")    
 
 def vault(request):
