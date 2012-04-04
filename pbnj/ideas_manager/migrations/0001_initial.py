@@ -12,7 +12,7 @@ class Migration(SchemaMigration):
         db.create_table('ideas_manager_idea', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('description', self.gf('django.db.models.fields.TextField')()),
-            ('viewed', self.gf('django.db.models.fields.CharField')(max_length=1)),
+            ('viewed', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('created', self.gf('django.db.models.fields.DateTimeField')()),
         ))
         db.send_create_signal('ideas_manager', ['idea'])
@@ -74,10 +74,10 @@ class Migration(SchemaMigration):
             'created': ('django.db.models.fields.DateTimeField', [], {}),
             'description': ('django.db.models.fields.TextField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'viewed': ('django.db.models.fields.CharField', [], {'max_length': '1'})
+            'viewed': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
         },
         'ideas_manager.userprofile': {
-            'Meta': {'object_name': 'UserProfile'},
+            'Meta': {'ordering': "('order',)", 'object_name': 'UserProfile'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'order': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '2'}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})

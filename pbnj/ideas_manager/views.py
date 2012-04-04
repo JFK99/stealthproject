@@ -27,7 +27,7 @@ def index(request): #Define our function, accept a request
 def push(request):
     entry =  request.POST
     now = datetime.now()
-    newIdea = idea(created=now.strftime("%Y-%m-%d %H:%M:%S"), description=entry['idea_pushed'], viewed='N')
+    newIdea = idea(created=now.strftime("%Y-%m-%d %H:%M:%S"), description=entry['idea_pushed'], viewed=False)
     newIdea.save()
     response = {
             "success": True,
@@ -56,8 +56,15 @@ def login(request):
     return HttpResponse(dumps(response), mimetype="application/json")    
 
 def pull(request):
-	items = idea.objects.all() #Query to get idea
-	return HttpResponse("pull")
+	item = idea.objects.filter(viewed=False).order_by('?')[0]
+	item.viewed = True
+	item.save()
+	response = {
+		"success": True,
+		"code": 0,
+		"idea": item.description
+	}
+	return HttpResponse(dumps(response), mimetype="application/json")    
 
 def vault(request):
     group = models.Group.objects.get(name='PBNJ')
