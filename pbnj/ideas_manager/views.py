@@ -78,6 +78,14 @@ def pull(request):
 	
 	return HttpResponse(dumps(response), mimetype="application/json")    
 
+def count(request):
+	response = {
+		"success" : True,
+		"code"    : 0,
+		"counter" : idea.objects.count()
+	}
+	return HttpResponse(dumps(response), mimetype="application/json")
+
 def vault(request):
     group = models.Group.objects.get(name='PBNJ')
     users = UserProfile.objects.filter(user__in=group.user_set.all())
