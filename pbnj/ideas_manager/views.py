@@ -54,7 +54,7 @@ def login(request):
     	}
 	
     return HttpResponse(dumps(response), mimetype="application/json")    
-
+@csrf_exempt
 def pull(request):
 	try:
 		item = idea.objects.filter(viewed=False).order_by('?')[0]
