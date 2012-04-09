@@ -29,9 +29,12 @@ def push(request):
     now = datetime.now()
     newIdea = idea(created=now.strftime("%Y-%m-%d %H:%M:%S"), description=entry['idea_pushed'], viewed=False)
     newIdea.save()
+    counter =  "#" + str(idea.objects.count()) + " PUSHED!" 
+
     response = {
             "success": True,
             "code": 0,
+            "count":  counter
           }
     return HttpResponse(dumps(response), mimetype="application/json")    
     
