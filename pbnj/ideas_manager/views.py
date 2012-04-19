@@ -82,9 +82,9 @@ def count(request):
 	response = {
 		"success" : True,
 		"code"    : 0,
-		"counter" : idea.objects.count(),
+		"total" : idea.objects.count(),
         "viewed":  idea.objects.filter(viewed=True).count(),
-        "Not viewed":  idea.objects.filter(viewed=False).count()
+        "not viewed":  idea.objects.filter(viewed=False).count()
 	}
 	return HttpResponse(dumps(response), mimetype="application/json")
 
