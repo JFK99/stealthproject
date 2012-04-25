@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class='title'>Where are we...</h3>
+  <div id="js-chart_div"></div>
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {'packages':['corechart']});
+      
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawChart);
+    var jsonData
+    function drawChart() {
+      var jsonString = $.ajax({
+          url: "{% url stats %}",
+          dataType:"json",
+          async: false
+          }).responseText;
+      
+      jsonData = JSON.parse(jsonString);
+
+      // Create our data table out of JSON data loaded from server.
+      var data = new google.visualization.DataTable(jsonData[0].data);
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.PieChart(document.getElementById('js-chart_div'));
+
+      chart.draw(data, {
+      	width: 500, 
+      	height: 340,
+      	backgroundColor: "transparent",
+      	is3D: true,
+      	'legend': { 'textStyle': { 'color': 'gray', "fontName": "ApexNew-Book", "fontSize" : 14 }, "position": "bottom" },
+      	slices: [{color: '#d7d7d7'}, {color: '#235e7c'}],
+      	"animation" : {"duration": 1000},
+		chartArea:{left:0, top:0, width:"90%", height:"70%"},
+		titleTextStyle: {color: 'gray', fontName: "ApexNew-Book", fontSize: 20},
+		tooltip: {textStyle: {color: 'gray'}, showColorCode: true},
+      });
+      $("#js-chart_div").fadeIn("slow");
+    }
+
+    </script>
+
+  {% endblock %} 
+
+  
+  
